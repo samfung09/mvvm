@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .green{
+            color: green;
+        }
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="arr[2]" v-on:input="input">
+        <h2>{{msg}}---{{hello}}---{{arr[2]}}</h2>
+        <p v-text="msg">哈哈哈</p>
+        <p v-html="msg" v-class="isRed ? 'red': 'green'">哈哈哈</p>
+        <button v-on:click="changeColor">点我</button>
+    </div>
+    <script src="watcher.js"></script>
+    <script src="observer.js"></script>
+    <script src="compile.js"></script>
+    <script src="mvvm.js"></script>
+    <script>
+        var vm = new MVVM({
+            el: '#app',
+            data: {
+                hello: 'hello world',
+                msg: '<h2>欢迎来到自己实现的mvvm</h2>',
+                obj: {
+                    a:1
+                },
+                arr: [1,2,'hahaha'],
+                isRed: true,
+                green: 'green'
+            },
+            methods: {
+                changeColor(){
+                    this.isRed = !this.isRed;
+                    this.msg = '<h2>看到我就证明数据发布订阅成功了</h2>'
+                    // this.obj.a = 2;
+                    console.log(this)
+                }
+            }
+        })
+        console.log(vm)
+    </script>
+</body>
+</html>
